@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo cp $(basename "$0" .inst) /etc/udev/rules.d

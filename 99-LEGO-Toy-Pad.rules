@@ -1,0 +1,6 @@
+# LEGO Dimensions Toy Pad
+# Install this file into /etc/udev/rules.d/
+#
+# - Create symlinks /dev/legodim /dev/legodim0
+# - Give write access to all users
+SUBSYSTEM=="usb", ATTR{idVendor}=="0e6f", ATTR{idProduct}=="0241", SYMLINK+="legodim legodim%n", MODE="0666"

@@ -1,0 +1,14 @@
+package toypad
+
+import (
+	"testing"
+)
+
+func TestInit(t *testing.T) {
+	TOYPAD_INIT := [32]byte{0x55, 0x0f, 0xb0, 0x01, '(', 'c', ')', ' ', 'L', 'E', 'G', 'O', ' ', '2', '0', '1', '4', 0xf7, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+
+	cInit := Wake()
+	b := cInit.frame(1)
+	t.Logf("%q", TOYPAD_INIT[:])
+	t.Logf("%q", b)
+}
