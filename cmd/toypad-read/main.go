@@ -25,11 +25,13 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	var count [3]int // count of on each pad
 	for {
 		select {
 		case ev := <-tp.Events:
 			log.Printf("Event: %v\n", ev)
 			if ev.Dir == 0 {
+				count[int(ev.Pad-1)]++
 				cb := func(uint8, []byte, error) {}
 				tp.Send(toypad.TagRead(ev.Index, 0x23, cb))
 				tp.Send(toypad.TagRead(ev.Index, 0x27, cb))
@@ -39,7 +41,10 @@ func main() {
 				tp.Send(toypad.Flash(ev.Pad, 5, 10, 50, toypad.RGB{ev.UID[4], ev.UID[5], ev.UID[6]}))
 				// tp.Send(toypad.TagModel(ev.Index, nil, nil))
 			} else {
-				tp.Send(toypad.SetColor(ev.Pad, toypad.RGB{0, 0, 0})) // Switch off
+				count[int(ev.Pad-1)]--
+				if count[int(ev.Pad-1)] == 0 {
+					tp.Send(toypad.SetColor(ev.Pad, toypad.RGB{0, 0, 0})) // Switch off
+				}
 			}
 		case err := <-tp.Errors:
 			log.Println("Error:", err)
