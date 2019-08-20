@@ -10,6 +10,7 @@ Example: see cmd/toypad-read/main.go
 
 ### Toy Pad
 * https://github.com/Lefinnois/legopad_hid/blob/master/README.protocol.md
+* https://github.com/nathankellenicki/node-legodimensions/blob/master/src/toypad.js
 * https://github.com/ags131/node-ld/ Node.js
 * https://www.dajlab.org/jtoypad.html (Java code: https://github.com/e-amzallag/jtoypad)
 * https://github.com/VincentXII/Lego-Dimensions-Pad-Scripts Python
@@ -34,6 +35,10 @@ Example: see cmd/toypad-read/main.go
 
 ### Building instructions
 https://www.lego.com/fr-fr/service/buildinginstructions/search#?search&theme=10000-20229
+
+### Game
+* Packattack Guide on YouTube https://www.youtube.com/playlist?list=PLQEhT4w332jqqpysL0ngF1EOg9ragoFow
+* Soluce en français https://www.supersoluce.com/soluce/lego-dimensions/soluce-lego-dimensions
 
 ### Communities
 * [LEGO Dimensions on Reddit](https://www.reddit.com/r/Legodimensions/)
