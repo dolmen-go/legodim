@@ -7,7 +7,6 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
-	"log"
 	"math/bits"
 
 	"golang.org/x/crypto/tea"
@@ -139,10 +138,8 @@ func (k *Key) EncryptCharacter(c Character) []byte {
 	binary.BigEndian.PutUint32(b[0:4], uint32(c))
 	binary.BigEndian.PutUint32(b[4:8], uint32(c))
 	k.cipher.Encrypt(b[:], b[:])
-	log.Printf("[% X]", b)
 	binary.LittleEndian.PutUint32(b[0:], binary.BigEndian.Uint32(b[0:]))
 	binary.LittleEndian.PutUint32(b[4:], binary.BigEndian.Uint32(b[4:]))
-	log.Printf("[% X]", b)
 	return b[:]
 }
 
