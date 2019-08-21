@@ -30,7 +30,7 @@ func main() {
 		select {
 		case ev := <-tp.Events:
 			log.Printf("Event: %v\n", ev)
-			if ev.Dir == 0 {
+			if ev.Action == toypad.Add {
 				count[int(ev.Pad-1)]++
 				cb := func(uint8, []byte, error) {}
 				tp.Send(toypad.TagRead(ev.Index, 0x23, cb))

@@ -102,13 +102,13 @@ func (tp *ToyPad) readLoop(r io.Reader) {
 		l := int(frame[1])
 		log.Printf("<< [% X] %[1]q", frame[:2+l])
 		switch frame[0] {
-		case 'V':
+		case 'V': // Event
 			ev, err := parseEvent(payload)
 			if err != nil {
 				tp.errors <- err
 			} else {
 				tp.mu.Lock()
-				if ev.Dir == 0 {
+				if ev.Action == Add {
 					tp.tags[int(ev.Index)] = tagSlot{pad: ev.Pad, uid: ev.UID}
 				} else {
 					tp.tags[int(ev.Index)] = tagSlot{} // Clear the slot
@@ -116,8 +116,7 @@ func (tp *ToyPad) readLoop(r io.Reader) {
 				tp.mu.Unlock()
 				tp.events <- ev
 			}
-		case 'U':
-			// TODO handle reply
+		case 'U': // Reply to a request
 			log.Printf("Reply to msg %d [% X]", payload[0], payload[1:])
 			msgId := int(payload[0])
 			cb := tp.cb[msgId]
