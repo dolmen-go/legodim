@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"math/bits"
 
-	"golang.org/x/crypto/tea"
+	"github.com/dolmen-go/legodim/tealittle"
 )
 
 type UID [7]byte
@@ -101,52 +101,31 @@ func (uid UID) Key() *Key {
 	n = round(n, 16, false)
 	binary.LittleEndian.PutUint32(k.key[12:16], round(n, 20, true))
 
-	var k2 [16]byte
-	sw := func(i int) {
-		binary.BigEndian.PutUint32(k2[i:], binary.LittleEndian.Uint32(k.key[i:]))
-	}
-	sw(0)
-	sw(4)
-	sw(8)
-	sw(12)
-
 	// k.cipher, _ = tea.NewCipher(k.key[:])
-	k.cipher, _ = tea.NewCipher(k2[:])
+	k.cipher, _ = tealittle.NewCipher(k.key[:])
 	return &k
 }
 
 // Encrypt encrypts 8 bytes from src into dst.
 func (k *Key) Encrypt(dst, src []byte) {
-	binary.BigEndian.PutUint32(dst[0:], binary.LittleEndian.Uint32(src[0:]))
-	binary.BigEndian.PutUint32(dst[4:], binary.LittleEndian.Uint32(src[4:]))
 	k.cipher.Encrypt(dst[:8], dst[:8])
-	binary.LittleEndian.PutUint32(dst[0:], binary.BigEndian.Uint32(dst[0:]))
-	binary.LittleEndian.PutUint32(dst[4:], binary.BigEndian.Uint32(dst[4:]))
 }
 
 // Decrypt decrypts 8 bytes from src into dst.
 func (k *Key) Decrypt(dst, src []byte) {
-	binary.BigEndian.PutUint32(dst[0:], binary.LittleEndian.Uint32(src[0:]))
-	binary.BigEndian.PutUint32(dst[4:], binary.LittleEndian.Uint32(src[4:]))
 	k.cipher.Decrypt(dst[:8], dst[:8])
-	binary.LittleEndian.PutUint32(dst[0:], binary.BigEndian.Uint32(dst[0:]))
-	binary.LittleEndian.PutUint32(dst[4:], binary.BigEndian.Uint32(dst[4:]))
 }
 
 func (k *Key) EncryptCharacter(c Character) []byte {
 	var b [8]byte
-	binary.BigEndian.PutUint32(b[0:4], uint32(c))
-	binary.BigEndian.PutUint32(b[4:8], uint32(c))
+	binary.LittleEndian.PutUint32(b[0:4], uint32(c))
+	binary.LittleEndian.PutUint32(b[4:8], uint32(c))
 	k.cipher.Encrypt(b[:], b[:])
-	binary.LittleEndian.PutUint32(b[0:], binary.BigEndian.Uint32(b[0:]))
-	binary.LittleEndian.PutUint32(b[4:], binary.BigEndian.Uint32(b[4:]))
 	return b[:]
 }
 
 func (k *Key) DecryptCharacter(src []byte) Character {
 	var b [8]byte
-	binary.BigEndian.PutUint32(b[0:], binary.LittleEndian.Uint32(src[0:]))
-	binary.BigEndian.PutUint32(b[4:], binary.LittleEndian.Uint32(src[4:]))
-	k.cipher.Decrypt(b[:8], b[:8])
-	return Character(binary.BigEndian.Uint32(b[0:]))
+	k.cipher.Decrypt(b[:8], src)
+	return Character(binary.LittleEndian.Uint32(b[0:]))
 }
