@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dolmen-go/legodim/tealittle"
+	"github.com/DizzyDoug/legodim/tealittle"
 )
 
 func hex(s string) []byte {

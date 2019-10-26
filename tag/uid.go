@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"math/bits"
 
-	"github.com/dolmen-go/legodim/tealittle"
+	"github.com/DizzyDoug/legodim/tealittle"
 )
 
 type UID [7]byte

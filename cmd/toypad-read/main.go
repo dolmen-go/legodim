@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/dolmen-go/legodim/toypad"
+	"github.com/DizzyDoug/legodim/toypad"
 	"github.com/karalabe/hid"
 )
 

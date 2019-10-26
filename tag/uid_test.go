@@ -3,7 +3,7 @@ package tag_test
 import (
 	"testing"
 
-	"github.com/dolmen-go/legodim/tag"
+	"github.com/DizzyDoug/legodim/tag"
 )
 
 func TestUID(t *testing.T) {
