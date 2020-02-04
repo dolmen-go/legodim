@@ -19,19 +19,23 @@ Example: see cmd/toypad-read/main.go
 * Communauté française: https://forum.freelug.org/viewtopic.php?f=10&t=216&sid=3140983d0fbe23757469ecb8b05a6919&start=15
 
 ### Tags
+* [NXP Datasheet for NTAG 213](https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf)
 * https://nfc.toys/ (talks about Disney Infinity which is the same protocol as LEGO Dimensions)
-* https://nfc.toys/interop-inf.html Code
-* https://www.reddit.com/r/Legodimensions/comments/3oixfa/for_those_having_trouble_with_toy_or_figure_tags/ Reset tags
+    * https://nfc.toys/interop-inf.html Code
+* Reset tags: https://www.reddit.com/r/Legodimensions/comments/3oixfa/for_those_having_trouble_with_toy_or_figure_tags/
 * http://www.proxmark.org/forum/viewtopic.php?id=2657
 * https://nfc-bank.com/bins.php?categoryid=28
 * https://pastebin.com/mB5zrtxx
-* Vehicules ids: https://pastebin.com/KUBRtaxi
-* List of characters & vehicles: https://github.com/drake-vcu/LegoCrypto/tree/master/LegoCrypto.Data/Resources
-* https://github.com/phogar/ldnfctags/
-    * https://github.com/phogar/ldnfctags/blob/master/src/legodimensions_characters.c
-    * https://github.com/phogar/ldnfctags/blob/master/src/legodimensions_vehicles.c
+* Lists of characters & vehicles:
+    * Vehicules ids: https://pastebin.com/KUBRtaxi
+    * https://github.com/drake-vcu/LegoCrypto/tree/master/LegoCrypto.Data/Resources
+    * https://github.com/phogar/ldnfctags/
+        * https://github.com/phogar/ldnfctags/blob/master/src/legodimensions_characters.c
+        * https://github.com/phogar/ldnfctags/blob/master/src/legodimensions_vehicles.c
 * Vehicles/Acessories are "empty by default but are programmed by the LEGO Dimensions game". Source: [WB Games FAQ](https://legogamessupport.wbgames.com/hc/fr-fr/articles/360001217048-Comment-reprogrammer-votre-Toy-Tag-de-v%C3%A9hicule-ou-d-accessoire-LEGO-)
 * Vehicles/Accesories are "rewritable RFID". Source: [WB Games FAQ](https://legogamessupport.wbgames.com/hc/fr-fr/articles/360001216968-Comment-fonctionnent-les-Toy-Tags-et-les-am%C3%A9liorations-de-gadgets-et-de-v%C3%A9hicules-)
+
+* Generic NFC hack howto: https://smartlockpicking.com/slides/Confidence_A_2018_Practical_Guide_To_Hacking_RFID_NFC.pdf
 
 ### Building instructions
 https://www.lego.com/fr-fr/service/buildinginstructions/search#?search&theme=10000-20229
