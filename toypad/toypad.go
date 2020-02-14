@@ -27,6 +27,18 @@ type RGB struct {
 	R, G, B uint8
 }
 
+// RGBA implements image/color.Color interface.
+func (c RGB) RGBA() (r, g, b, a uint32) {
+	r = uint32(c.R)
+	r |= r << 8
+	g = uint32(c.G)
+	g |= g << 8
+	b = uint32(c.B)
+	b |= b << 8
+	a = 0xffff
+	return
+}
+
 type UID [7]byte
 
 func (uid UID) String() string {
