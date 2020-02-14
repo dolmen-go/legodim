@@ -113,21 +113,25 @@ type cmd byte
 const (
 	// Source: https://github.com/ags131/node-ld/blob/master/src/lib/constants.js
 
-	cmdInit         cmd = 0xB0
-	cmdSeed         cmd = 0xB1
-	cmdChallenge    cmd = 0xB3
-	cmdColor        cmd = 0xC0
-	cmdGetColor     cmd = 0xC1
-	cmdFade         cmd = 0xC2
-	cmdFlash        cmd = 0xC3
-	cmdFADRD        cmd = 0xC4
-	cmdFADAL        cmd = 0xC6
-	cmdFLSAL        cmd = 0xC7
-	cmdCOLAL        cmd = 0xC8
-	cmdTagList      cmd = 0xD0
-	cmdTagRead      cmd = 0xD2
-	cmdTagWrite     cmd = 0xD3
-	cmdTagModel     cmd = 0xD4
+	cmdInit      cmd = 0xB0
+	cmdSeed      cmd = 0xB1
+	cmdChallenge cmd = 0xB3
+
+	cmdColor       cmd = 0xC0
+	cmdGetColor    cmd = 0xC1
+	cmdFade        cmd = 0xC2
+	cmdFlash       cmd = 0xC3
+	cmdFadeRandom  cmd = 0xC4
+	cmdFadeUnknown cmd = 0xC5 // Length: 5
+	cmdFadeAll     cmd = 0xC6
+	cmdFlashAll    cmd = 0xC7
+	cmdColorAll    cmd = 0xC8
+
+	cmdTagList  cmd = 0xD0
+	cmdTagRead  cmd = 0xD2
+	cmdTagWrite cmd = 0xD3
+	cmdTagModel cmd = 0xD4
+
 	cmdConfigPwd    cmd = 0xE1
 	cmdConfigEnable cmd = 0xE5
 	cmdLEDSQ        cmd = 0xFF
