@@ -161,11 +161,12 @@ func TagRead(index uint8, pageNum uint8, cb func(status uint8, data []byte, err 
 			status := payload[0]
 			data := payload[1:]
 			if payload[0] == 0 {
-				log.Printf("\033[1mPages %d [% X]  %d [% X]  %d [% X]  %d [% X]\033[m",
+				log.Printf("\033[1mPages %2d [% X]  %2d [% X]  %2d [% X]  %2d [% X] %q\033[m",
 					pageNum, data[:4],
 					pageNum+1, data[4:8],
 					pageNum+2, data[8:12],
-					pageNum+3, data[12:])
+					pageNum+3, data[12:],
+					data)
 			}
 			cb(status, data, nil)
 		}
