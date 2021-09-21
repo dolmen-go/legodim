@@ -3,20 +3,28 @@ package main
 import (
 	"log"
 
-	"github.com/karalabe/hid"
-
 	"github.com/dolmen-go/legodim/tag"
 	"github.com/dolmen-go/legodim/toypad"
 )
 
 func main() {
-	devs := hid.Enumerate(toypad.VendorID, toypad.ProductID)
-	if len(devs) == 0 {
-		log.Fatalln("No devices found.")
+	/*
+		devs := hid.Enumerate(toypad.VendorID, toypad.ProductID)
+		if len(devs) == 0 {
+			log.Fatalln("No devices found.")
+		}
+		log.Printf("%#v\n", devs)
+		dev, err := devs[0].Open()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		defer dev.Close()
+	*/
+	devs, err := connect(toypad.VendorID, toypad.ProductID)
+	if err != nil {
+		log.Fatalln(err)
 	}
-	log.Printf("%#v\n", devs)
-
-	dev, err := devs[0].Open()
+	dev, err := devs[0]()
 	if err != nil {
 		log.Fatalln(err)
 	}
