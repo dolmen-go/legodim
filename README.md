@@ -8,7 +8,20 @@ Example: see cmd/toypad-read/main.go
 
 ## Resources
 
-### Toy Pad
+### Hardware
+
+Note: there are 3 versions of the Dimensions Toy Pad:
+* [PS3/PS4/Wii U](https://store.bricklink.com/v2/catalog/catalogitem.page?G=dimpadpswiiu)
+* XBox 360
+* XBox One
+
+This code works **ONLY** with the PS3/PS4/Wii U version.
+
+### Buy a Toy Pad
+
+* [BrickLink](https://store.bricklink.com/v2/catalog/catalogitem.page?G=dimpadpswiiu#T=S&O={%22iconly%22:0}) (the LEGO marketplace for second hand)
+
+### Toy Pad communucation
 * https://github.com/Lefinnois/legopad_hid/blob/master/README.protocol.md
 * https://github.com/nathankellenicki/node-legodimensions/blob/master/src/toypad.js
 * https://github.com/ags131/node-ld/ Node.js
