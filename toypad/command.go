@@ -93,10 +93,14 @@ func (c *Command) Send(w io.Writer, msgId uint8) error {
 	log.Printf(">> [% X] %[1]q", f[:2+int(f[1])])
 	n, err := w.Write(f)
 	if err != nil {
-		return err
+		return fmt.Errorf("Write: %w", err)
 	}
-	if n != len(f) {
-		return io.ErrShortWrite
+	if n < len(f) {
+		return fmt.Errorf("Write %d/%d: %w", n, len(f), io.ErrShortWrite)
+	}
+	if n > len(f) {
+		// This happens on Windows
+		log.Printf("Sent %d bytes, %d written. WTF??", len(f), n)
 	}
 	return nil
 }
