@@ -5,22 +5,11 @@ import (
 
 	"github.com/dolmen-go/legodim/tag"
 	"github.com/dolmen-go/legodim/toypad"
+	"github.com/dolmen-go/legodim/toypadlink"
 )
 
 func main() {
-	/*
-		devs := hid.Enumerate(toypad.VendorID, toypad.ProductID)
-		if len(devs) == 0 {
-			log.Fatalln("No devices found.")
-		}
-		log.Printf("%#v\n", devs)
-		dev, err := devs[0].Open()
-		if err != nil {
-			log.Fatalln(err)
-		}
-		defer dev.Close()
-	*/
-	devs, err := connect(toypad.VendorID, toypad.ProductID)
+	devs, err := toypadlink.List(toypad.VendorID, toypad.ProductID)
 	if err != nil {
 		log.Fatalln(err)
 	}
