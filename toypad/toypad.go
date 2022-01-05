@@ -131,8 +131,10 @@ func (tp *ToyPad) readLoop(r io.Reader) {
 		case 'U': // Reply to a request
 			log.Printf("Reply to msg %d [% X]", payload[0], payload[1:])
 			msgId := int(payload[0])
+			tp.mu.Lock()
 			cb := tp.cb[msgId]
 			tp.cb[msgId] = nil
+			tp.mu.Unlock()
 			if cb != nil {
 				cb(payload[1:], nil)
 			}
