@@ -97,12 +97,13 @@ func (c *Command) Send(w io.Writer, msgId uint8) error {
 	if err != nil {
 		return fmt.Errorf("Write: %w", err)
 	}
+	if n == len(f)+1 {
+		// This happens on Windows with github.com/karalabe/hid
+		// See https://github.com/karalabe/hid/issues/36
+		n--
+	}
 	if n < len(f) {
 		return fmt.Errorf("Write %d/%d: %w", n, len(f), io.ErrShortWrite)
-	}
-	if n > len(f) {
-		// This happens on Windows
-		log.Printf("Sent %d bytes, %d written. WTF??", len(f), n)
 	}
 	return nil
 }
