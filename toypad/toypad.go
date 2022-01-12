@@ -55,7 +55,7 @@ type ToyPad struct {
 	w  io.Writer
 
 	msgId uint8
-	cb    [256]func([]byte, error)
+	cb    [256]replyCallback
 	// sendQueue []*Command
 
 	tags [12]tagSlot

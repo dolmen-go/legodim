@@ -7,11 +7,13 @@ import (
 	"log"
 )
 
+type replyCallback = func(payload []byte, err error)
+
 // Command is a command to send to the toy pad.
 type Command struct {
 	cmd     cmd
 	payload []byte
-	cb      func(payload []byte, err error)
+	cb      replyCallback
 }
 
 // Format implements fmt.Formatter.
@@ -26,7 +28,7 @@ func (cmd *Command) Format(f fmt.State, c rune) {
 	}
 }
 
-func newCommand(cmd cmd, cb func([]byte, error), args ...interface{}) *Command {
+func newCommand(cmd cmd, cb replyCallback, args ...interface{}) *Command {
 	buf := make([]byte, 0, 32-5)
 	b := buf
 	var l int
@@ -154,7 +156,7 @@ func Flash(pad Pad, ticksOn uint8, ticksOff uint8, ticksCount uint8, color RGB) 
 }
 
 func TagRead(index uint8, pageNum uint8, cb func(status uint8, data []byte, err error)) *Command {
-	var cb2 func(payload []byte, err error)
+	var cb2 replyCallback
 	if cb != nil {
 		cb2 = func(payload []byte, err error) {
 			if err != nil {
