@@ -1,3 +1,4 @@
+//go:build !linux
 // +build !linux
 
 package toypadlink
@@ -5,7 +6,7 @@ package toypadlink
 import (
 	"errors"
 
-	"github.com/karalabe/hid"
+	"github.com/dolmen-go/hid"
 )
 
 func List(vendorID, productID uint16) ([]Connect, error) {

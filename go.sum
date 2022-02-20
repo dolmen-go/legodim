@@ -1,5 +1,5 @@
-github.com/karalabe/hid v1.0.1-0.20190806082151-9c14560f9ee8 h1:AP5krei6PpUCFOp20TSmxUS4YLoLvASBcArJqM/V+DY=
-github.com/karalabe/hid v1.0.1-0.20190806082151-9c14560f9ee8/go.mod h1:Vr51f8rUOLYrfrWDFlV12GGQgM5AT8sVh+2fY4MPeu8=
+github.com/dolmen-go/hid v0.0.0-20220220194146-683d52c2e0c6 h1:Vy6IW2O4Tm95T2iS7rdVJsEpz5Xrw094n/3RiZiBh8Q=
+github.com/dolmen-go/hid v0.0.0-20220220194146-683d52c2e0c6/go.mod h1:ON8cz1ID8EwPHkqRKP6dv6O/4bNgZy6NNufSFmartFs=
 github.com/zserge/hid v0.0.0-20190124175232-e1626f1782f3 h1:DAdExZJtAXR150WHt4wzTCzHH7lXkD4vKN9xLtF05VU=
 github.com/zserge/hid v0.0.0-20190124175232-e1626f1782f3/go.mod h1:OpyudhSlA/GSwcydk4+0Ex9DBI+9mOs/Pk06vmIjLSA=
 golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 h1:7I4JAnoQBe7ZtJcBaYHi5UtiO8tQHbUSXxL+pnGRANg=
