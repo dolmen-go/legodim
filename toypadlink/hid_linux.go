@@ -2,7 +2,6 @@ package toypadlink
 
 import (
 	"errors"
-	"io"
 
 	"github.com/zserge/hid"
 )
@@ -31,7 +30,7 @@ func (d *hiddev) Close() error {
 }
 
 func List(vendorID, productID uint16) ([]Connect, error) {
-	var devs []hidopen
+	var devs []Connect
 	hid.UsbWalk(func(d hid.Device) {
 		info := d.Info()
 		if info.Vendor != vendorID || info.Product != productID {
