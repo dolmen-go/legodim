@@ -2,7 +2,6 @@ package tealittle_test
 
 import (
 	"bytes"
-	"crypto/cipher"
 	hx "encoding/hex"
 	"strings"
 	"testing"
@@ -18,8 +17,6 @@ func hex(s string) []byte {
 	}
 	return b
 }
-
-var _ cipher.Block = teaLE{nil}
 
 func TestEnc(t *testing.T) {
 	key := hex("CA3DE8C7 011E608C 58C285A0 9DB48B3E")
