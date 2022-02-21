@@ -1,10 +1,13 @@
 package toypad
 
 import (
+	"context"
 	"encoding/hex"
 	"io"
 	"log"
 	"sync"
+
+	"github.com/dolmen-go/contextio"
 )
 
 const (
@@ -68,11 +71,11 @@ type ToyPad struct {
 	Errors <-chan error
 }
 
-func NewToyPad(r io.Reader, w io.Writer) (*ToyPad, error) {
+func NewToyPad(ctx context.Context, r io.Reader, w io.Writer) (*ToyPad, error) {
 	events := make(chan *Event, 2)
 	errors := make(chan error)
 	toypad := ToyPad{
-		w:      w,
+		w:      contextio.NewWriter(ctx, w),
 		msgId:  0,
 		events: events,
 		Events: events,
@@ -84,7 +87,7 @@ func NewToyPad(r io.Reader, w io.Writer) (*ToyPad, error) {
 		return nil, err
 	}
 
-	go toypad.readLoop(r)
+	go toypad.readLoop(contextio.NewReader(ctx, r))
 	return &toypad, nil
 }
 
@@ -101,7 +104,9 @@ func (tp *ToyPad) readLoop(r io.Reader) {
 		var frame [32]byte
 		_, err := r.Read(frame[:])
 		if err != nil {
-			log.Println(err)
+			if err != context.Canceled {
+				log.Println(err)
+			}
 			break
 		}
 		// log.Printf("[% X]", frame[:])

@@ -1,7 +1,10 @@
 package main
 
 import (
+	"context"
 	"log"
+	"os"
+	"os/signal"
 
 	"github.com/dolmen-go/legodim/tag"
 	"github.com/dolmen-go/legodim/toypad"
@@ -19,14 +22,27 @@ func main() {
 	}
 	defer dev.Close()
 
-	tp, err := toypad.NewToyPad(dev, dev)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	// interruption du contexte par SIGTERM (CTRL+C)
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, os.Interrupt)
+	go func() {
+		<-sigs
+		cancel()
+	}()
+
+	tp, err := toypad.NewToyPad(ctx, dev, dev)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	var count [3]int // count of on each pad
+Loop:
 	for {
 		select {
+		case <-ctx.Done():
+			break Loop
 		case ev := <-tp.Events:
 			log.Printf("Event: %v\n", ev)
 			if ev.Action == toypad.Add {
@@ -75,16 +91,4 @@ func main() {
 
 	// Init
 	toypad.Wake().Send(dev, 1)
-
-	// Read forever
-	for {
-		var frame [32]byte
-		_, err := dev.Read(frame[:])
-		if err != nil {
-			log.Println(err)
-			break
-		}
-		l := int(frame[1])
-		log.Printf("[% X] %[1]q", frame[:2+l])
-	}
 }

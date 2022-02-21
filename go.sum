@@ -1,3 +1,5 @@
+github.com/dolmen-go/contextio v0.0.0-20210803191544-7a4579021851 h1:kTkAnZvweDFCx2j8b6SDUd3HRCHiJRYhAM4xmnG+d9U=
+github.com/dolmen-go/contextio v0.0.0-20210803191544-7a4579021851/go.mod h1:cxc20xI7fOgsFHWgt+PenlDDnMcrvh7Ocuj5hEFIdEk=
 github.com/dolmen-go/hid v0.0.0-20220220194146-683d52c2e0c6 h1:Vy6IW2O4Tm95T2iS7rdVJsEpz5Xrw094n/3RiZiBh8Q=
 github.com/dolmen-go/hid v0.0.0-20220220194146-683d52c2e0c6/go.mod h1:ON8cz1ID8EwPHkqRKP6dv6O/4bNgZy6NNufSFmartFs=
 github.com/zserge/hid v0.0.0-20190124175232-e1626f1782f3 h1:DAdExZJtAXR150WHt4wzTCzHH7lXkD4vKN9xLtF05VU=
